@@ -2,20 +2,21 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>주소검색</title>
+    <title>주소 검색</title>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
       html, body {
         margin: 0;
         padding: 0;
         height: 100%;
-        overflow: hidden;
-        background-color: #f9f9fc;
+        background-color: #fff;
       }
 
       #container {
         width: 100vw;
         height: 100vh;
+        box-sizing: border-box;
+        padding-top: 20px;
       }
 
       #powered {
@@ -41,9 +42,20 @@
         oncomplete: function(data) {
           sendAddressToFlutter(data.address);
         },
-        width: '100%',
-        height: '100%'
-      }).embed(document.getElementById('container'));
+        animation: true,
+        hideMapBtn: true,
+        hideEngBtn: true,
+        theme: {
+          bgColor: "#FFFFFF",
+          searchBgColor: "#F9F9F9",
+          contentBgColor: "#FFFFFF",
+          pageBgColor: "#FFFFFF",
+          textColor: "#333333",
+          queryTextColor: "#1A73E8",
+          postcodeTextColor: "#EA4335",
+          emphTextColor: "#1A73E8"
+        }
+      }).embed(document.getElementById("container"));
     </script>
   </body>
 </html>
