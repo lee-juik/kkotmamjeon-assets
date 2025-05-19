@@ -1,33 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
   <head>
     <meta charset="utf-8" />
-    <title>주소 검색</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>주소검색</title>
     <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <style>
       html, body {
         margin: 0;
         padding: 0;
         height: 100%;
-        background-color: #fff;
-      }
-
-      #container {
-        width: 100vw;
-        height: 100vh;
-        box-sizing: border-box;
-        padding-top: 20px;
-      }
-
-      #powered {
-        display: none;
+        width: 100%;
+        background-color: #fdfdfd;
       }
     </style>
   </head>
   <body>
-    <div id="container"></div>
-    <div id="powered">Powered by Kakao</div>
-
     <script>
       function sendAddressToFlutter(address) {
         if (window.AddressSelected) {
@@ -39,23 +27,13 @@
       }
 
       new daum.Postcode({
+        width: '100%',
+        height: '100%',
         oncomplete: function(data) {
-          sendAddressToFlutter(data.address);
-        },
-        animation: true,
-        hideMapBtn: true,
-        hideEngBtn: true,
-        theme: {
-          bgColor: "#FFFFFF",
-          searchBgColor: "#F9F9F9",
-          contentBgColor: "#FFFFFF",
-          pageBgColor: "#FFFFFF",
-          textColor: "#333333",
-          queryTextColor: "#1A73E8",
-          postcodeTextColor: "#EA4335",
-          emphTextColor: "#1A73E8"
+          var fullAddr = data.address;
+          sendAddressToFlutter(fullAddr);
         }
-      }).embed(document.getElementById("container"));
+      }).embed(document.body);
     </script>
   </body>
 </html>
